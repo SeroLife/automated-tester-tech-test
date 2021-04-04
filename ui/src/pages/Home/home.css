@@ -1,0 +1,28 @@
+.home-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-title-inner-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 60vw;
+  max-width: 900px;
+}
+
+.home-input-container {
+  width: 60vw;
+  max-width: 900px;
+  margin-top: 24px;
+}
+
+.home-inner-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}

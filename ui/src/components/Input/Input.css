@@ -1,0 +1,11 @@
+.input {
+  margin: 8px 0;
+}
+
+.input > input {
+  padding: 12px;
+  width: 90%;
+  border-radius: 8px;
+  border: 1px solid var(--inputBorder);
+  outline: none;
+}

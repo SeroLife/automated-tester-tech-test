@@ -1,0 +1,28 @@
+.view-recipe_container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.view-recipe_outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-recipe_container__inner {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.view-recipe_container__inner__input {
+  display: flex;
+  flex-flow: column wrap;
+  margin-right: 24px;
+}
+
+.view-recipe_container__inner__button-container {
+  margin: 40px 0;
+  display: flex;
+}

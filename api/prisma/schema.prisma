@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Recipe {
+  id                   Int           @id @default(autoincrement())
+  name                 String
+  cooking_time_minutes String
+  ingredients          Ingredient[]
+  cooking_steps        CookingStep[]
+  updated_at           DateTime      @updatedAt
+}
+
+model CookingStep {
+  id          Int     @id @default(autoincrement())
+  description String
+  Recipe      Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId    Int?
+}
+
+model Ingredient {
+  id          Int     @id @default(autoincrement())
+  name        String
+  measurement String
+  Recipe      Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId    Int?
+}
