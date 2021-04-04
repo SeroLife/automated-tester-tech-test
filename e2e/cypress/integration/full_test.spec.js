@@ -31,7 +31,7 @@ describe('Saving recipes', () => {
 });
 
 describe('Viewing saved recipes', () => {
-  describe('When I view a saved recipe from the results on the home page', () => {
+  describe('When I view a saved recipe', () => {
     it('should show me the ingredients and cooking methods for the given recipe', function () {
       cy.visit('http://localhost:3000');
       cy.get(':nth-child(1) > .recipe-content > .recipe-button_container > .button--fill').click();

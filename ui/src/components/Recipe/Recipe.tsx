@@ -36,7 +36,6 @@ export const Recipe = (props: RecipeProps) => {
           props.expand
             ? <>
               <h2>Cooking steps</h2>
-
               {
                 props?.cooking_steps?.map(cookingStep => <li style={{ listStyleType: 'decimal', marginBottom: '18px' }}>{cookingStep.description}</li>)
               }

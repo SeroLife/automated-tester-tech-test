@@ -6,6 +6,7 @@ import { Header } from "../../components/Header/Header";
 import { IRecipe } from "../../interfaces/IRecipe";
 import { IngredientStepper } from "../../components/Stepper/IngredientStepper/IngredientStepper";
 import { Input } from "../../components/Input/Input";
+import { Variables } from "../../Variables";
 import { useHistory } from "react-router";
 import { useState } from "react";
 
@@ -30,7 +31,7 @@ export const CreateRecipe = () => {
   const saveRecipe = async () => {
     setIsSaving(true);
 
-    await fetch('http://localhost:3080/recipes', {
+    await fetch(`${ Variables.URL }/recipes`, {
       method: 'POST',
       body: JSON.stringify(form),
       headers: {
