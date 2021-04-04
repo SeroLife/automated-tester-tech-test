@@ -15,5 +15,5 @@ Run the following command in a separate terminal (You must have your UI and API 
 ```
 cd e2e
 
-npm run start:e2e
+npm run e2e
 ```

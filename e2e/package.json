@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "The E2E suite Recipe Book",
   "scripts": {
-    "start:e2e": "npx cypress run"
+    "e2e": "npx cypress run"
   }
 }
