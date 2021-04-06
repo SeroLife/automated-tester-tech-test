@@ -73,4 +73,8 @@ export class RecipeService {
       }
     });
   }
+
+  async deleteRecipe(recipeId: number) {
+    return this.prisma.recipe.delete({ where: { id: recipeId } });
+  }
 }

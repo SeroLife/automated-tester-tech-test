@@ -1,14 +1,25 @@
 {
+  "id": 1,
   "cooking_time_minutes": 10,
-  "name": "Apple Crumble",
+  "name": "Test Recipe",
   "cooking_steps": [
     {
-      "description": "Step One"
+      "description": "Add apples to tin"
+    },
+    {
+      "description": "Add Sugar"
+    },
+    {
+      "description": "Enjoy"
     }
   ],
   "ingredients": [
     {
       "name": "Apples",
+      "measurement": "100g"
+    },
+    {
+      "name": "Sugar",
       "measurement": "500g"
     }
   ]

@@ -4,5 +4,8 @@
   "description": "The E2E suite Recipe Book",
   "scripts": {
     "e2e": "npx cypress run"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1"
   }
 }

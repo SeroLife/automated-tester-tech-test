@@ -46,9 +46,20 @@ export class RecipeController extends BaseController {
     }
   }
 
+  async delete(req: Request, res: Response) {
+    try {
+      await this.recipeService.deleteRecipe(parseInt(req.params.id));
+
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
+    }
+  }
+
   register() {
     this.app.get('/recipes', (req, res) => this.list(req, res));
     this.app.get('/recipes/:id', (req, res) => this.get(req, res));
     this.app.post('/recipes', (req, res) => this.create(req, res));
+    this.app.delete('/recipes/:id', (req, res) => this.delete(req, res));
   }
 }
