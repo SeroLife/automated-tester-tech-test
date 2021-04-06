@@ -1,0 +1,15 @@
+{
+  "cooking_time_minutes": 10,
+  "name": "Apple Crumble",
+  "cooking_steps": [
+    {
+      "description": "Step One"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Apples",
+      "measurement": "500g"
+    }
+  ]
+}

@@ -48,28 +48,23 @@ describe('Viewing saved recipes', () => {
 describe('Searching saved recipes', () => {
   describe('When I search for a recipe by name', () => {
     it('should return me the recipe for my given search query', function () {
-      cy.visit('http://localhost:3000');
-      cy.get('input').clear();
-      cy.get('input').type('Crumble');
-      cy.get(':nth-child(1) > .recipe-content > h1').contains('Apple Crumble')
+      cy.searchRecipe('Crumble', 'Apple Crumble');
     });
   });
 
   describe('When I search for a recipe by ingredient', () => {
     it('should return me the recipe for my given search query', function () {
-      cy.visit('http://localhost:3000');
-      cy.get('input').clear();
-      cy.get('input').type('Sugar');
-      cy.get(':nth-child(1) > .recipe-content > h1').contains('Apple Crumble')
+      cy.searchRecipe('Sugar', 'Apple Crumble');
     });
   });
 
   describe('When I search for a recipe that does not exist', () => {
     it('should show me the no recipes found message', function () {
-      cy.visit('http://localhost:3000');
-      cy.get('input').clear();
-      cy.get('input').type('This does not exist');
-      cy.get('.home-inner-container > div > h2').contains("It looks like you don't have any recipes");
+      cy.searchRecipe(
+        'This does not exist',
+        "It looks like you don't have any recipes",
+        ".home-inner-container > div > h2"
+      );
     });
   });
 });
