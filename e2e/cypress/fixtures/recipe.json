@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "cooking_time_minutes": 10,
+  "cooking_time_minutes": "10",
   "name": "Test Recipe",
   "cooking_steps": [
     {

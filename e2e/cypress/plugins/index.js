@@ -1,4 +1,6 @@
 const axios = require('axios');
+const { readFileSync } = require('fs');
+const { resolve } = require('path');
 
 module.exports = (on) => {
   on('task', {
@@ -13,6 +15,13 @@ module.exports = (on) => {
         return axios.delete(`http://localhost:3080/recipes/${JSON.parse(body)[0].id}`).then(() => {
           return null;
         });
+      });
+    },
+    seed() {
+      const seedData = readFileSync(resolve('cypress', 'fixtures', 'recipe.json'), 'utf-8');
+
+      return axios.post('http://localhost:3080/recipes', JSON.parse(seedData)).then(() => {
+        return null;
       });
     }
   });
