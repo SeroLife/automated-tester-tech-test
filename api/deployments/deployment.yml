@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recipe-cookbook-api-deployment
+  labels:
+    app: recipe-cookbook-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: recipe-cookbook-api
+  template:
+    metadata:
+      labels:
+        app: recipe-cookbook-api
+    spec:
+      containers:
+        - name: recipe-cookbook-api
+          image: jackthomson/recipe-cookbook-api
+          ports:
+            - containerPort: 3080
