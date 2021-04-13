@@ -20,7 +20,7 @@ export class RecipeController extends BaseController {
         recipes = await this.recipeService.getRecipes();
       }
 
-      res.send(recipes);
+      res.send({ data: recipes, status: 200, image: 'jackthomson/recipe-cookbook-api' });
     } catch (e) {
       res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
     }
