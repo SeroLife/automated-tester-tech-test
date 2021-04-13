@@ -6,7 +6,7 @@ Open a terminal and run the following command to spin up the API and React UI
 docker-compose up
 ```
 
-*Navigate to http://localhost:3000 to view the UI*
+_Navigate to http://localhost:3000 to view the UI_
 
 # How to run the tests
 
@@ -16,6 +16,27 @@ Run the following command in a separate terminal (You must have your UI and API 
 cd e2e
 
 npm run e2e
+```
+
+# Deploy on Kubernetes in Google Cloud Environment
+
+```
+git clone https://github.com/Jackthomsonn/recipe-cookbook.git
+cd recipe-cookbook/api
+kubectl apply -f deployments/deployment.yml
+kubectl apply -f deployments/service.yml
+```
+
+# Update on Kubernetes
+
+```
+kubectl set image deployment recipe-cookbook-api-deployment  recipe-cookbook-api=jackthomson/recipe-cookbook-api:latest
+```
+
+# Track rollout events
+
+```
+kubectl rollout status deployment recipe-cookbook-api-deployment
 ```
 
 # Screenshots
