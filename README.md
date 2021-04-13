@@ -31,6 +31,10 @@ kubectl apply -f deployments/service.yml
 
 ```
 kubectl set image deployment recipe-cookbook-api-deployment  recipe-cookbook-api=jackthomson/recipe-cookbook-api:latest
+
+or
+
+kubectl rollout restart
 ```
 
 # Track rollout events
