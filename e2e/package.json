@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "The E2E suite Recipe Book",
   "scripts": {
-    "e2e": "npx cypress run"
+    "e2e": "npx cypress open"
   },
   "devDependencies": {
     "axios": "^0.21.1"

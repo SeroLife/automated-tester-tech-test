@@ -1,5 +1,20 @@
-version: '3'
+version: "3"
 services:
+  postgres:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=recipeman
+      - POSTGRES_PASSWORD=password
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5438:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   recipe-book-api:
     build:
       context: ./api
@@ -7,8 +22,8 @@ services:
       - "3080:3080"
     container_name: recipe-book-api
     volumes:
-       - ./api:/usr/src/app/api
-       - /usr/src/app/api/node_modules
+      - ./api:/usr/src/app/api
+      - /usr/src/app/api/node_modules
   recipe-book-ui:
     build:
       context: ./ui
@@ -17,5 +32,5 @@ services:
     container_name: recipe-book-ui
     stdin_open: true
     volumes:
-       - ./ui:/usr/src/app/ui
-       - /usr/src/app/ui/node_modules
+      - ./ui:/usr/src/app/ui
+      - /usr/src/app/ui/node_modules

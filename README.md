@@ -1,50 +1,75 @@
-# How to run the app
+# Automation tech test
 
-Open a terminal and run the following command to spin up the API and React UI
+## Pre-requisites
 
 ```
-docker-compose up
+make install
+```
+
+Open a terminal and run the following command to spin up the API, React UI and local postgres instance
+
+```
+make docker-compose
+make migrate
 ```
 
 _Navigate to http://localhost:3000 to view the UI_
 
-# How to run the tests
+## How to run the tests
 
-Run the following command in a separate terminal (You must have your UI and API running)
-
-```
-cd e2e
-
-npm run e2e
-```
-
-# Deploy on Kubernetes in Google Cloud Environment
+Run the following command in a separate terminal
 
 ```
-git clone https://github.com/Jackthomsonn/recipe-cookbook.git
-cd recipe-cookbook/api
-kubectl apply -f deployments/deployment.yml
-kubectl apply -f deployments/service.yml
+make run-tests
 ```
 
-# Update on Kubernetes
+# Testing scenarios
 
-```
-kubectl set image deployment recipe-cookbook-api-deployment  recipe-cookbook-api=jackthomson/recipe-cookbook-api:latest
+## Saving favorite recipes
 
-or
+### User story 1
 
-kubectl rollout restart
-```
+As a chef
+I want to save my favorite recipes\
+So that I can cook them another time
 
-# Track rollout events
+### Acceptance criteria 1
 
-```
-kubectl rollout status deployment recipe-cookbook-api-deployment
-```
+Given I have a new recipe\
+When I add the new recipe name\
+And ingredients\
+And measurements\
+And cooking method\
+Then the new recipe is saved for later
 
-# Screenshots
+## Searching favorite recipes by name
 
-![Screenshot 2021-04-04 at 17 11 02](https://user-images.githubusercontent.com/11717131/113514834-bd4cda80-9568-11eb-8fc6-dc6b13df59f6.png)
-![Screenshot 2021-04-04 at 17 11 10](https://user-images.githubusercontent.com/11717131/113514836-c2118e80-9568-11eb-9c3a-0d65ecdfe884.png)
-![Screenshot 2021-04-04 at 17 11 20](https://user-images.githubusercontent.com/11717131/113514841-c76ed900-9568-11eb-9752-a1c1b17b1fb9.png)
+### User story 2
+
+As a chef\
+I want to search for my favorite recipe\
+So that I can cook it
+
+### Acceptance criteria 2
+
+Given I want to look for a recipe\
+When I search by the name of the recipe\
+Then I find the recipe\
+And I can see the ingredients\
+And I can see the cooking methods
+
+## Searching favorite recipes by ingredients (Optional)
+
+### User story 3
+
+As a chef\
+I want to search for my favorite recipe by ingredient\
+So that I can cook it
+
+### Acceptance criteria 3
+
+Given I want to look for a recipe by ingredients\
+When I search by the ingredient of the recipe\
+Then I find the recipe\
+And I can see the ingredients\
+And I can see the cooking methods

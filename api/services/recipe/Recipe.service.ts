@@ -1,4 +1,4 @@
-import { CookingStep, Ingredient, PrismaClient } from '@prisma/client';
+import { CookingStep, Ingredient, PrismaClient } from "@prisma/client";
 
 export class RecipeService {
   private prisma: PrismaClient = new PrismaClient();
@@ -12,8 +12,8 @@ export class RecipeService {
         ingredients: true,
       },
       orderBy: {
-        updated_at: 'desc'
-      }
+        updated_at: "desc",
+      },
     });
 
     return recipes;
@@ -22,11 +22,16 @@ export class RecipeService {
   async searchRecipes(query: string) {
     const recipes = await this.prisma.recipe.findMany({
       where: {
-        OR: [ {
-          name: { contains: query, mode: 'insensitive' },
-        }, {
-          ingredients: { some: { name: { contains: query, mode: 'insensitive' } } }
-        } ],
+        OR: [
+          {
+            name: { contains: query, mode: "insensitive" },
+          },
+          {
+            ingredients: {
+              some: { name: { contains: query, mode: "insensitive" } },
+            },
+          },
+        ],
       },
       select: {
         id: true,
@@ -35,9 +40,9 @@ export class RecipeService {
         cooking_time_minutes: true,
       },
       orderBy: {
-        updated_at: 'desc'
-      }
-    })
+        updated_at: "desc",
+      },
+    });
 
     return recipes;
   }
@@ -50,12 +55,17 @@ export class RecipeService {
         name: true,
         ingredients: true,
         cooking_steps: true,
-        cooking_time_minutes: true
-      }
+        cooking_time_minutes: true,
+      },
     });
   }
 
-  async saveRecipe(recipe: { name: string, ingredients: Ingredient[], cooking_steps: CookingStep[], cooking_time_minutes: string }) {
+  async saveRecipe(recipe: {
+    name: string;
+    ingredients: Ingredient[];
+    cooking_steps: CookingStep[];
+    cooking_time_minutes: string;
+  }) {
     return this.prisma.recipe.create({
       data: {
         name: recipe.name,
@@ -63,14 +73,14 @@ export class RecipeService {
         ingredients: {
           createMany: {
             data: recipe.ingredients,
-          }
+          },
         },
         cooking_steps: {
           createMany: {
             data: recipe.cooking_steps,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   }
 

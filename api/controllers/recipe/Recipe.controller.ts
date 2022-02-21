@@ -1,7 +1,7 @@
-import { Recipe } from '@prisma/client';
-import { Express, Request, Response } from 'express';
-import { RecipeService } from '../../services/recipe/Recipe.service';
-import { BaseController } from '../base/Base.controller';
+import { Recipe } from "@prisma/client";
+import { Express, Request, Response } from "express";
+import { RecipeService } from "../../services/recipe/Recipe.service";
+import { BaseController } from "../base/Base.controller";
 
 export class RecipeController extends BaseController {
   private recipeService: RecipeService = new RecipeService();
@@ -15,14 +15,20 @@ export class RecipeController extends BaseController {
 
     try {
       if (req?.query?.search) {
-        recipes = await this.recipeService.searchRecipes(<string>req.query.search);
+        recipes = await this.recipeService.searchRecipes(
+          <string>req.query.search
+        );
       } else {
         recipes = await this.recipeService.getRecipes();
       }
 
-      res.send({ data: recipes, status: 200, image: 'jackthomson/recipe-cookbook-api' });
+      res.send({
+        data: recipes,
+        status: 200,
+        image: "jackthomson/recipe-cookbook-api",
+      });
     } catch (e) {
-      res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
+      res.status(e.status ?? 500).send(e.message ?? "Internal Server Error");
     }
   }
 
@@ -32,7 +38,7 @@ export class RecipeController extends BaseController {
 
       res.send(recipe);
     } catch (e) {
-      res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
+      res.status(e.status ?? 500).send(e.message ?? "Internal Server Error");
     }
   }
 
@@ -42,7 +48,7 @@ export class RecipeController extends BaseController {
 
       res.sendStatus(200);
     } catch (e) {
-      res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
+      res.status(e.status ?? 500).send(e.message ?? "Internal Server Error");
     }
   }
 
@@ -52,14 +58,14 @@ export class RecipeController extends BaseController {
 
       res.sendStatus(200);
     } catch (e) {
-      res.status(e.status ?? 500).send(e.message ?? 'Internal Server Error');
+      res.status(e.status ?? 500).send(e.message ?? "Internal Server Error");
     }
   }
 
   register() {
-    this.app.get('/recipes', (req, res) => this.list(req, res));
-    this.app.get('/recipes/:id', (req, res) => this.get(req, res));
-    this.app.post('/recipes', (req, res) => this.create(req, res));
-    this.app.delete('/recipes/:id', (req, res) => this.delete(req, res));
+    this.app.get("/recipes", (req, res) => this.list(req, res));
+    this.app.get("/recipes/:id", (req, res) => this.get(req, res));
+    this.app.post("/recipes", (req, res) => this.create(req, res));
+    this.app.delete("/recipes/:id", (req, res) => this.delete(req, res));
   }
 }
