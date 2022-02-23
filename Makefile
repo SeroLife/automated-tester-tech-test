@@ -1,3 +1,5 @@
+DATABASE_URL=postgres://recipeman:password@127.0.0.1:5438/recipe
+
 install:
 	$(call header,Starting docker service)
 	npm i && cd api && npm i && cd .. && cd ui && npm i && cd .. && cd e2e && npm i
@@ -12,4 +14,4 @@ run-tests:
 
 migrate:
 	$(call header,Migrating database)
-	cd api && DATABASE_URL="postgres://recipeman:password@127.0.0.1:5438/recipe" npx prisma migrate dev --name init
+	cd api && DATABASE_URL=$(DATABASE_URL) npx prisma migrate dev --name init

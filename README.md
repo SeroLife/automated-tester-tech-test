@@ -10,7 +10,6 @@ Open a terminal and run the following command to spin up the API, React UI and l
 
 ```
 make docker-compose
-make migrate
 ```
 
 _Navigate to http://localhost:3000 to view the UI_
@@ -24,6 +23,7 @@ make run-tests
 ```
 
 # Testing scenarios
+Write automated tests to assert the BDD acceptance criteria. We encourage you to make improvements to the application to make testing easier and more maintainable. Also impress us by writing API tests.
 
 ## Saving favorite recipes
 

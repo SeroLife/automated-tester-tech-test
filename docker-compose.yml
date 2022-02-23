@@ -15,6 +15,11 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
   recipe-book-api:
     build:
       context: ./api
@@ -24,6 +29,9 @@ services:
     volumes:
       - ./api:/usr/src/app/api
       - /usr/src/app/api/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
   recipe-book-ui:
     build:
       context: ./ui
@@ -34,3 +42,13 @@ services:
     volumes:
       - ./ui:/usr/src/app/ui
       - /usr/src/app/ui/node_modules
+  recipe-book-migration:
+    image: node
+    container_name: recipe-book-migration
+    working_dir: /migration
+    command: make migrate DATABASE_URL=postgres://recipeman:password@postgres:5432/recipe
+    volumes:
+      - .:/migration
+    depends_on:
+      postgres:
+        condition: service_healthy
