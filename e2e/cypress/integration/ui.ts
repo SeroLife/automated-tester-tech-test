@@ -1,1 +1,61 @@
-describe("UI Tests", () => {});
+describe("Acceptance criteria 1",function()
+{
+    it('Verify Title of the page',function()
+    {
+    cy.visit('http://localhost:3000/')
+    cy.title().should('eq','Recipe Book')
+    })
+    it('Create New Recipe Page access',function()
+    {
+    cy.get('[class="button--line"]').click()
+    })
+    it('Add New Recipe Details',function()
+    {
+    cy.get('input[placeholder="Apple Crumble"]').type('Potato Fry')
+    cy.get('input[placeholder="45"]').type('30')
+    })
+    it('Add Multiple Ingredients',function()
+    {
+    cy.get('input[placeholder="Apples"]').type('Potato')
+    cy.get('input[placeholder="100g"]').type('200g')
+    cy.contains('Add another ingredient').click()
+    cy.get('input[placeholder=Apples]').eq(1).type('Sunflower Oil',{ multiple: true})
+    cy.get('input[placeholder="100g"]').eq(1).type('10ml')
+    cy.contains('Add another ingredient').click()
+    cy.get('input[placeholder="Apples"]').eq(2).type('Salt')
+    cy.get('input[placeholder="100g"]').eq(2).type('As per taste')
+    cy.contains('Add another ingredient').click()
+    cy.get('input[placeholder="Apples"]').eq(3).type('Chilli powder')
+    cy.get('input[placeholder="100g"]').eq(3).type('10g')   
+    })
+    it('Add cooking steps',function()
+    {
+    cy.get('input[placeholder="Peel the apples"]').type('Cut the Potato')
+    cy.contains('Add another step').click()
+    cy.get('input[placeholder="Peel the apples"]').eq(1).type('Add Oil in Pan')
+    cy.contains('Add another step').click()
+    cy.get('input[placeholder="Peel the apples"]').eq(2).type('Place Potato in Hot Oil')
+    cy.contains('Add another step').click()
+    cy.get('input[placeholder="Peel the apples"]').eq(3).type('Add salt and hilli Powder')
+    cy.contains('Add another step').click()
+    cy.get('input[placeholder="Peel the apples"]').eq(4).type('Fry until the potato cooked fully')
+    }) 
+    it('Save Recipe',function()
+    {
+    cy.contains('Save recipe').click()
+    })
+})
+describe("Acceptance criteria 2 and 3",function()
+{
+    it('Verify Title of the page',function()
+    {
+    cy.visit('http://localhost:3000/')
+    cy.title().should('eq','Recipe Book')
+    })
+    it('Type Recipe Name',function()
+    {
+    cy.get('input[placeholder="Search for a recipe by name or by ingredients"]').should('be.visible').type('potato{enter}')
+    cy.contains('h1','Potato Fry')
+    cy.contains('Cook it').click()
+    })  
+})
